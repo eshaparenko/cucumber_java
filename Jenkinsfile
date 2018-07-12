@@ -11,4 +11,10 @@ node('master') {
                     sh 'mvn test -Dcucumber.options="--tags @SmokeTest"'
                   }
     }
+    }
+
+
+
+
+
 }
