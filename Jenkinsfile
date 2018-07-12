@@ -6,7 +6,7 @@ node('master') {
     }
 
     stage('Run tests') {
-        withMaven(maven: 'Maven 3') {
+        withMaven(maven: 'mvn') {
                   dir('cucumber_demo') {
                     sh 'mvn test -Dcucumber.options="--tags @SmokeTest"'
                   }
