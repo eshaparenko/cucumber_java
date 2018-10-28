@@ -14,4 +14,12 @@
                 }
             }
         }
+        stage('Docker Image Build') {
+                    steps {
+                        echo 'Building Docker Image...'
+                        script {
+                            builtImage = docker.build("mvn_project:latest", "-f Dockerfile .")
+                        }
+                    }
+                }
     }
