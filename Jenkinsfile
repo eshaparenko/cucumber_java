@@ -29,7 +29,7 @@ def IMAGE_NAME = "mvn_project:latest"
                       sh "mkdir -p $WORKSPACE/reports"
                     }
                     script {
-                      sh "ls $WORKSPACE/reports"
+                      sh "echo $(ls $WORKSPACE/reports)"
                     }
                     script {
                       sh "docker run --rm --name $PROJECT_NAME \
