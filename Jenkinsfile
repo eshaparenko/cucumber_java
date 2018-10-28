@@ -31,7 +31,6 @@ def IMAGE_NAME = "mvn_project:latest"
                     script {
                       sh "docker run --rm --name $PROJECT_NAME \
                             --user 1000:1000 \
-                            //--mount type=bind,source=$WORKSPACE/reports,target=/automation/reports \
                             $IMAGE_NAME"
                     }
                   }
