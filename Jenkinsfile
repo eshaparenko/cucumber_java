@@ -1,6 +1,7 @@
 #!groovy
 
 def PROJECT_NAME = "cucumber-test-automation"
+def IMAGE_NAME = "mvn_project:latest"
     pipeline {
         agent {
             docker {
@@ -18,7 +19,7 @@ def PROJECT_NAME = "cucumber-test-automation"
                                 steps {
                                     echo 'Building Docker Image...'
                                     script {
-                                        builtImage = docker.build("mvn_project:latest", "-f Dockerfile .")
+                                        builtImage = docker.build("$IMAGE_NAME", "-f Dockerfile .")
                                     }
                                 }
                             }
@@ -34,7 +35,7 @@ def PROJECT_NAME = "cucumber-test-automation"
                       sh "docker run --rm --name $PROJECT_NAME \
                 --user 1000:1000 \
                 --mount type=bind,source=$WORKSPACE/reports,target=/automation/reports \
-                  $ECR_HOST/$IMAGE_NAME"
+                  $IMAGE_NAME"
                     }
                     cucumber buildStatus: 'FAILURE', failedFeaturesNumber: 0, failedScenariosNumber: 0, failedStepsNumber: 0, fileIncludePattern: '**/*.json', jsonReportDirectory: 'reports/'
                   }
