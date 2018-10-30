@@ -3,31 +3,21 @@
 def PROJECT_NAME = "cucumber-test-automation"
 def IMAGE_NAME = "mvn_project:latest"
     pipeline {
-        agent {
-            docker {
-                image 'maven:3-alpine'
-                args '-v $HOME/.m2:/root/.m2'
-            }
-        }
+        adockerfile {
+                 filename 'Dockerfile'
+                 label '"$IMAGE_NAME"'
+                 args '-v $HOME/.m2:/root/.m2'
+                 args '-v $WORKSPACE/reports:/automation/reports'
+
+             }
         stages {
-            stage('Build') {
+            stage('Compile') {
                 steps {
-                    sh 'mvn compile'
+                    sh 'mvn compile -Dmaven.repo.local=/root/.m2'
                 }
             }
-            stage('Docker Image Build') {
-                                steps {
-                                    echo 'Building Docker Image...'
-                                    script {
-                                        builtImage = docker.build("$IMAGE_NAME", "-f Dockerfile .")
-                                    }
-                                }
-                            }
             stage("UI Validation Tests") {
                   steps {
-                    script {
-                      sh "mkdir -p $WORKSPACE/reports"
-                    }
                     script {
                       sh "docker run --rm --name $PROJECT_NAME \
                             --user 1000:1000 \
