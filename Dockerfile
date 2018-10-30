@@ -5,6 +5,7 @@ MAINTAINER yshaparenko@lohika.com
 # add all sources
 COPY pom.xml /automation/
 COPY /src /automation/src/
+COPY entrypoint.sh /
 
 RUN mkdir -p /automation/reports
 RUN chmod +x /entrypoint.sh
