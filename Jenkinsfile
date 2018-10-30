@@ -7,6 +7,7 @@ pipeline {
             agent {
                 dockerfile {
                 args '-v /tmp:/tmp'
+                args '--user 1000:1000'    
             }
             }
             steps {
