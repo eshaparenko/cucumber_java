@@ -11,3 +11,4 @@ RUN chmod +x /entrypoint.sh
 RUN chown -R 1000:1000 /automation
 
 WORKDIR /automation
+ENTRYPOINT ["/entrypoint.sh"]
