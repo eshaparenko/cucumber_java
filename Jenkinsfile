@@ -6,8 +6,7 @@ pipeline {
         stage('Back-end') {
             agent {
                 dockerfile {
-                args '-v /tmp:/tmp'
-                args '--user 1000:1000'    
+                args '-v /tmp:/tmp'  
             }
             }
             steps {
