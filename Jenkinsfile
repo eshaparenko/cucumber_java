@@ -5,24 +5,6 @@ node('master') {
         stage('Git clone') {
             git 'git@github.com:eshaparenko/cucumber_java.git'
         }
-        stage('Build') {
-            docker
-                .image('jenkins-agent-ubuntu')
-                .inside('--volumes-from jenkins-master') {
-                    sh "bash ./build.sh;"
-                }
-        }
-        stage('Copy build results') {
-            docker
-                .image('jenkins-agent-ubuntu')
-                .inside('--volumes-from jenkins-master') {
-                    sh """
-                        sshpass -plol scp \
-                            "${WORKSPACE}/build/*.tar.gz" \
-                            "backup@1.1.1.1:/buils";
-                    """
-                }
-        }
         stage("UI Validation Tests") {
                           steps {
                             script {
