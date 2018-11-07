@@ -16,7 +16,7 @@ public class WebdriverHelper {
             try {
                 DesiredCapabilities capabilities = new DesiredCapabilities();
                 capabilities.setBrowserName("firefox");
-                driver = new RemoteWebDriver(new URL("http://0.0.0.0:4444/wd/hub"), capabilities);
+                driver = new RemoteWebDriver(new URL("http://zalenium:4444/wd/hub"), capabilities);
                 driver.manage().window().fullscreen();
             } catch (MalformedURLException e) {
                 e.printStackTrace();
