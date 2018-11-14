@@ -9,11 +9,17 @@ pipeline {
             steps {
                 sh "mvn clean test"
             }
-            post {
-                always {
-                    junit '**/target/*-reports/TEST-*.xml'
+            stage('Generate HTML report') {
+                    cucumber buildStatus: 'UNSTABLE',
+                            fileIncludePattern: '**/*.json',
+                            trendsLimit: 10,
+                            classifications: [
+                                [
+                                    'key': 'Browser',
+                                    'value': 'Chrome'
+                                ]
+                            ]
                 }
-            }
         }
     }
 }
