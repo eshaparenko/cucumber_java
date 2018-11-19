@@ -14,13 +14,7 @@ pipeline {
                     script{
                         cucumber buildStatus: 'Failure',
                             fileIncludePattern: '**/*.json',
-                            trendsLimit: 10,
-                            classifications: [
-                                [
-                                    'key': 'Browser',
-                                    'value': 'Chrome'
-                                ]
-                            ]
+                            jsonReportDirectory: 'target/cucumber-report'
                     }
                 }
             }
