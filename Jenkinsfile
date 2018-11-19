@@ -9,19 +9,19 @@ pipeline {
             steps {
                 sh "mvn clean test"
             }
-        }
-
-        stage('Generate HTML report') {
-            cucumber buildStatus: 'Failure',
-                    fileIncludePattern: '**/*.json',
-                    trendsLimit: 10,
-                    classifications: [
-                        [
-                            'key': 'Browser',
-                            'value': 'Chrome'
-                        ]
-                    ]
-
+            post{
+                always{
+                    cucumber buildStatus: 'Failure',
+                                        fileIncludePattern: '**/*.json',
+                                        trendsLimit: 10,
+                                        classifications: [
+                                            [
+                                                'key': 'Browser',
+                                                'value': 'Chrome'
+                                            ]
+                                        ]
+                }
+            }
         }
     }
 }
