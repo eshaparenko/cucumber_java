@@ -14,7 +14,7 @@ pipeline {
                     script{
                         cucumber buildStatus: 'Failure',
                             fileIncludePattern: '**/*.json',
-                            jsonReportDirectory: 'target/cucumber-report'
+                            jsonReportDirectory: 'target'
                     }
                 }
             }
