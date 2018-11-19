@@ -11,15 +11,17 @@ pipeline {
             }
             post{
                 always{
-                    cucumber buildStatus: 'Failure',
-                                        fileIncludePattern: '**/*.json',
-                                        trendsLimit: 10,
-                                        classifications: [
-                                            [
-                                                'key': 'Browser',
-                                                'value': 'Chrome'
-                                            ]
-                                        ]
+                    script{
+                        cucumber buildStatus: 'Failure',
+                            fileIncludePattern: '**/*.json',
+                            trendsLimit: 10,
+                            classifications: [
+                                [
+                                    'key': 'Browser',
+                                    'value': 'Chrome'
+                                ]
+                            ]
+                    }
                 }
             }
         }
