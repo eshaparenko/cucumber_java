@@ -7,14 +7,14 @@ pipeline {
     stages {
         stage('Install') {
             steps {
-                sh "mvn clean test"
+                sh "mvn clean verify"
             }
             post{
                 always{
                     script{
                         cucumber buildStatus: 'Failure',
                             fileIncludePattern: '**/*.json',
-                            jsonReportDirectory: ''
+                            jsonReportDirectory: 'target'
                     }
                 }
             }
