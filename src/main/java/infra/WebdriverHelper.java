@@ -17,9 +17,12 @@ public class WebdriverHelper {
             try {
                 DesiredCapabilities capabilities = new DesiredCapabilities();
                 capabilities.setBrowserName("chrome");
-//                driver = new RemoteWebDriver(new URL("http://zalenium:4444/wd/hub"), capabilities);
-                System.setProperty("webdriver.chrome.driver", "/Users/ysharpenko/Documents/drivers/chromedriver");
-                driver = new ChromeDriver();
+                if (System.getenv("ENVIRONMENT").equals("remote")) {
+                    driver = new RemoteWebDriver(new URL("http://zalenium:4444/wd/hub"), capabilities);
+                } else {
+                    System.setProperty("webdriver.chrome.driver", "/Users/ysharpenko/Documents/drivers/chromedriver");
+                    driver = new ChromeDriver();
+                }
                 driver.manage().window().fullscreen();
             } catch (Exception e) {
                 e.printStackTrace();

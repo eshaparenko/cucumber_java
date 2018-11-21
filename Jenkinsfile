@@ -4,6 +4,9 @@ pipeline {
         jdk 'jdk8'
         maven 'maven3'
     }
+    environment {
+            ENVIRONMENT='remote'
+        }
     stages {
         stage('Install') {
             steps {
