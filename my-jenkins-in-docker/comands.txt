@@ -1,0 +1,2 @@
+    --grep installed plugins
+docker exec -it myjenkins ls /var/jenkins_home/plugins/ | grep -v jpi

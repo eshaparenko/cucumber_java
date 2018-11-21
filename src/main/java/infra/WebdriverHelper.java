@@ -1,6 +1,7 @@
 package infra;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -15,10 +16,12 @@ public class WebdriverHelper {
         if (driver == null) {
             try {
                 DesiredCapabilities capabilities = new DesiredCapabilities();
-                capabilities.setBrowserName("firefox");
-                driver = new RemoteWebDriver(new URL("http://zalenium:4444/wd/hub"), capabilities);
+                capabilities.setBrowserName("chrome");
+//                driver = new RemoteWebDriver(new URL("http://zalenium:4444/wd/hub"), capabilities);
+                System.setProperty("webdriver.chrome.driver", "/Users/ysharpenko/Documents/drivers/chromedriver");
+                driver = new ChromeDriver();
                 driver.manage().window().fullscreen();
-            } catch (MalformedURLException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
